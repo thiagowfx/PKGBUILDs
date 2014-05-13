@@ -5,5 +5,5 @@
 *.sig
 pkg/
 src/
-
+.AURINFO
 *~
