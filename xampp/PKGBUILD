@@ -18,7 +18,8 @@ md5sums=('SKIP')
 package() {
   install -dm755 "${pkgdir}/opt/lampp"
 
-  proot -b "${pkgdir}"/opt/lampp:/opt/lampp "${srcdir}"/download --mode text
+  msg "Extracting package to a chroot..."
+  echo "Y" | proot -b "${pkgdir}"/opt/lampp:/opt/lampp "${srcdir}"/download --mode text
   chmod g-s -R "${pkgdir}"/opt/lampp
 
   # licenses
