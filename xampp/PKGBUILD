@@ -17,7 +17,6 @@ md5sums=('SKIP')
 
 package() {
   install -dm755 "${pkgdir}/opt/lampp"
-  install -dm755 "${pkgdir}/opt/lampp/img"
 
   proot -b "${pkgdir}"/opt/lampp:/opt/lampp "${srcdir}"/download --mode text
   chmod g-s -R "${pkgdir}"/opt/lampp
