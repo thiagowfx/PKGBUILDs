@@ -1,5 +1,5 @@
-# Maintainer: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
-# Contributor: Jose Valecillos <valecillosjg (at) gmail (dot) com>
+# Maintainer: Jose Valecillos <valecillosjg (at) gmail (dot) com>
+# Contributor: Thiago Perrotta <echo dGhpYWdvcGVycm90dGE5NUBnbWFpbC5jb20K | base64 -d >
 pkgname=xampp
 pkgver=1.8.3
 pkgrel=1
@@ -19,6 +19,7 @@ package() {
   install -dm755 "${pkgdir}/opt/lampp"
 
   msg "Extracting package to a chroot..."
+  chmod +x "${srcdir}"/download
   echo "Y" | proot -b "${pkgdir}"/opt/lampp:/opt/lampp "${srcdir}"/download --mode text
   chmod g-s -R "${pkgdir}"/opt/lampp
 
