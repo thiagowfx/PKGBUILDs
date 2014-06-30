@@ -1,3 +1,8 @@
+pre_install () {
+    getent group  mysql >/dev/null || groupadd -g 713                 mysql >/dev/null
+    getent passwd mysql >/dev/null || useradd  -g 713 -s /bin/nologin mysql >/dev/null
+}
+
 post_install() {
     echo "XAMPP is now installed under the /opt/lampp directory"
     echo "To start, stop or restart XAMPP simply call as root:"
@@ -8,8 +13,8 @@ post_install() {
 
 pre_upgrade() {
    /opt/lampp/lampp stop >/dev/null 2>&1
- }
-
+   pre_install
+}
 
 pre_remove() {
   /opt/lampp/lampp stop >/dev/null 2>&1

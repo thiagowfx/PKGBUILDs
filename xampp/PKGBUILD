@@ -8,7 +8,7 @@ url="http://www.apachefriends.org/"
 license=('GPL')
 arch=('i686' 'x86_64')
 depends=('net-tools')
-makedepends=('proot')
+makedepends=('fakeuser' 'proot')
 [ "$CARCH" = "i686" ]   && source=("http://sourceforge.net/projects/${pkgname}/files/XAMPP%20Linux/${pkgver}/${pkgname}-linux-${pkgver}-4-installer.run/download")
 [ "$CARCH" = "x86_64" ] && source=("http://sourceforge.net/projects/${pkgname}/files/XAMPP%20Linux/${pkgver}/${pkgname}-linux-x64-${pkgver}-4-installer.run/download")
 options=(!strip)
@@ -17,6 +17,10 @@ md5sums=('SKIP')
 
 package() {
   install -dm755 "${pkgdir}/opt/lampp"
+
+  msg "Creating a temporary mysql user/group with fakeadd(fakeuser)..."
+  getent group  mysql >/dev/null || fakeadd -G -n mysql -g 713
+  getent passwd mysql >/dev/null || fakeadd -U -n mysql -g 713 -u 713
 
   msg "Extracting package to a chroot..."
   chmod +x "${srcdir}"/download
