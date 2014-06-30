@@ -15,12 +15,23 @@ options=(!strip)
 install=xampp.install
 md5sums=('SKIP')
 
+_warning() {
+  echo "Due to limitations of the .run file of this package, you now must"
+  echo "have a mysql user in your system prior to its build."
+
+  echo "You can either create a mysql user manually or just run fakepkg"
+  echo "instead of makepkg. You can pass normal makepkg parameters to it,"
+  echo "such as fakepkg -si".
+}
+
 package() {
+  _warning
+
   install -dm755 "${pkgdir}/opt/lampp"
 
   msg "Creating a temporary mysql user/group with fakeadd(fakeuser)..."
-  getent group  mysql >/dev/null || fakeadd -G -n mysql -g 713
-  getent passwd mysql >/dev/null || fakeadd -U -n mysql -g 713 -u 713
+  getent group  mysql >/dev/null || fakeadd -G -n mysql -g 713        || _warning
+  getent passwd mysql >/dev/null || fakeadd -U -n mysql -g 713 -u 713 || _warning
 
   msg "Extracting package to a chroot..."
   chmod +x "${srcdir}"/download
