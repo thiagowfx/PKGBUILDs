@@ -3,7 +3,7 @@
 
 pkgname=translate-shell
 pkgver=0.8.22.5
-pkgrel=1
+pkgrel=2
 pkgdesc="Google Translate to serve as a command-line tool."
 arch=('any')
 url="http://www.soimort.org/$pkgname"
@@ -18,6 +18,7 @@ optdepends=(
 )
 provides=("$pkgname")
 conflicts=("$pkgname-git")
+install=$pkgname.install
 source=("https://github.com/soimort/$pkgname/archive/v$pkgver.tar.gz")
 md5sums=('0e73b25c0b2ead022268555943a77460')
 sha256sums=('a0e3d5ac173f8964d05e698cb27628852a98e77cbb31006bbee54f8ff9e2d7d8')
@@ -32,4 +33,5 @@ package() {
   mkdir -p "$pkgdir/usr/bin/"
   make "INSTDIR=$pkgdir/usr/bin" install
   install -Dm644 man/trans.1 "$pkgdir/usr/share/man/man1/trans.1"
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
 }
