@@ -2,7 +2,7 @@
 _pkgname=arandr-indicator
 pkgname="${_pkgname}-git"
 pkgver=1
-pkgrel=1
+pkgrel=2
 pkgdesc="Quick and simple tray icon menu for changing the monitor layout."
 arch=('any')
 url="https://github.com/denilsonsa/${_pkgname}"
@@ -15,7 +15,7 @@ md5sums=('SKIP')
 
 package() {
   cd "${srcdir}/${_pkgname}"
-  install -Dm755 "${_pkgname}.py" "${pkgdir}/usr/bin/${_pkgname}.py"
+  install -Dm755 "${_pkgname}.py" "${pkgdir}/usr/bin/${_pkgname}"
 }
 
 # vim:set ts=2 sw=2 et:
