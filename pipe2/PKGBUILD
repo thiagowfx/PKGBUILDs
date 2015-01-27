@@ -11,7 +11,7 @@ arch=('i686' 'x86_64')
 url="https://github.com/sarahtattersall/$_gitname"
 license=('MIT')
 depends=('java-runtime>=1.6')
-makedepends=('maven')
+makedepends=('maven' 'git')
 provides=("pipe=${pkgver}")
 conflicts=('pipe')
 replaces=('pipe')
