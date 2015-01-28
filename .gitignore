@@ -1,13 +1,3 @@
-*.tar
-*.tar.*
-*.log
-*.log.*
-*.sig
-pkg/
-src/
-.AURINFO
-*~
-
 # Created by https://www.gitignore.io
 
 ### Emacs ###
@@ -52,4 +42,21 @@ tramp
 Session.vim
 .netrwhist
 *~
+
+
+### ArchLinuxPackages ###
+*.tar
+*.tar.*
+*.zip
+*.tgz
+*.log
+*.log.*
+*.sig
+
+# AUR metadata
+.AURINFO
+.SRCINFO
+
+pkg/
+src/
 
