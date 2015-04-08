@@ -3,7 +3,7 @@
 
 pkgname=translate-shell
 pkgver=0.8.23
-pkgrel=1
+pkgrel=2
 pkgdesc="Google Translate to serve as a command-line tool."
 arch=('any')
 url="http://www.soimort.org/$pkgname"
@@ -19,8 +19,6 @@ optdepends=(
     'rlwrap: needed for readline-style editing and history in the interactive mode'
     'emacs: for using the Emacs interface (with the -E flag)'
 )
-provides=("$pkgname")
-conflicts=("$pkgname")
 install=$pkgname.install
 source=("https://github.com/soimort/$pkgname/archive/v$pkgver.tar.gz")
 md5sums=('f7fa96b113fb23e2cb1f0dd331882db3')
