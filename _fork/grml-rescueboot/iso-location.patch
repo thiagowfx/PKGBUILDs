@@ -1,0 +1,10 @@
+--- a/etc/default/grml-rescueboot	2011-01-07 08:14:11.000000000 -0200
++++ b/etc/default/grml-rescueboot	2015-04-19 18:48:57.959115048 -0300
+@@ -2,6 +2,7 @@
+ 
+ # Location of ISOs:
+ # ISO_LOCATION="/boot/grml/"
++ISO_LOCATION="/opt/grml/"
+ 
+ # To set any specific bootoptions for rescue images
+ # present in /boot/grml just set and enable the following option:

@@ -1,0 +1,43 @@
+# Maintainer: Michael Laß <bevan@bi-co.net>
+# Contributor: Max Roder <maxroder@web.de>
+# Contributor: Thiago Perrotta <perrotta dot thiago at poli dot ufrj dot br>
+
+pkgname=grml-rescueboot
+pkgver=0.4.5
+_isover="64-full_2014.11"
+pkgrel=2
+pkgdesc="grub2 script to add grml iso images to the grub2 boot menu"
+url="http://wiki.grml.org/doku.php?id=rescueboot"
+arch=(any)
+license=(GPL)
+depends=(grub)
+install="${pkgname}.install"
+source=("http://deb.grml.org/pool/main/g/${pkgname}/${pkgname}_${pkgver}.tar.xz"
+        "grml${_isover}.iso"
+        "iso-location.patch")
+md5sums=('fb9218c556961cc74db01a5b14d51b05'
+         '51ca23d8335732150f31c021eafc6513'
+         'd90d70c006e48212a858ade66eeb0c4e')
+sha256sums=('9f5d4d34062e40f23c50f59d1c7b3bf4067b091a531a4638c958afc65306aced'
+            '3338c38c9c69a548dafdac8f42402010aa46b8de577df11d60e0ead1e3566409'
+            'eba4b00d8c0788e87af96056fb2f28585ca5261a91c59b5bc808cb1c6b50dfcd')
+PKGEXT=".pkg.tar"
+noextract=(grml${_isover}.iso)
+
+prepare() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+  patch -Np1 < ${srcdir}/iso-location.patch
+}
+            
+package() {
+	cd "${srcdir}/${pkgname}-${pkgver}"
+
+	# adjust path of grub-mkconfig_lib
+	sed -i 's/${libdir}\/grub/${prefix}\/share\/grub/g' 42_grml
+
+	install -Dm755 42_grml ${pkgdir}/etc/grub.d/42_grml
+	install -Dm644 etc/default/${pkgname} ${pkgdir}/etc/default/${pkgname}
+
+	install -d ${pkgdir}/opt/grml
+  install -Dm644 ${srcdir}/grml${_isover}.iso ${pkgdir}/opt/grml/grml${_isover}.iso
+}
