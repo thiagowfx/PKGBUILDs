@@ -13,7 +13,7 @@ license=(GPL)
 depends=(grub)
 install="${pkgname}.install"
 source=("http://deb.grml.org/pool/main/g/${pkgname}/${pkgname}_${pkgver}.tar.xz"
-        "grml${_isover}.iso"
+        "http://download.grml.org/grml${_isover}.iso"
         "iso-location.patch")
 md5sums=('fb9218c556961cc74db01a5b14d51b05'
          '51ca23d8335732150f31c021eafc6513'
