@@ -10,7 +10,6 @@ url="http://www.openbsd.org/"
 arch=('any')
 license=('GPL')
 depends=('grub')
-install="${pkgname}.install"
 source=("http://openbsd.c3sl.ufpr.br/openbsd/${pkgver}/amd64/cd${pkgver/./}.iso"
         "openbsd-rescueboot"
         "42_openbsd")
@@ -38,5 +37,5 @@ package() {
     install -Dm755 42_openbsd ${pkgdir}/etc/grub.d/42_openbsd
     install -Dm644 ${pkgname} ${pkgdir}/etc/default/${pkgname}
 
-    install -Dm644 "cd${pkgver/./}.iso" "${pkgdir}/opt/openbsd/cd${pkgver/./}.iso"
+    install -Dm644 "cd${pkgver/./}.iso" "${pkgdir}/boot/openbsd/cd${pkgver/./}.iso"
 }
