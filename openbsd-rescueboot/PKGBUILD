@@ -1,0 +1,42 @@
+# Maintainer: Thiago Perrotta <perrotta dot thiago at poli dot ufrj dot br>
+# Originally based on the grml-rescueboot PKGBUILD
+
+pkgname=openbsd-rescueboot
+# this should be the wanted OpenBSD version
+pkgver=5.6
+pkgrel=1
+pkgdesc="Script to add OpenBSD iso images to the grub2 boot menu"
+url="http://www.openbsd.org/"
+arch=('any')
+license=('GPL')
+depends=('grub')
+install="${pkgname}.install"
+source=("http://openbsd.c3sl.ufpr.br/openbsd/${pkgver}/amd64/cd${pkgver/./}.iso"
+        "openbsd-rescueboot"
+        "42_openbsd")
+md5sums=('65854da3159e33042fc7b741e9389f07'
+         '6f2f602c8b2b808b1ceb1edaad25f3d4'
+         'b5c43bdcc4e9f1566c55928580c455c4')
+sha256sums=('99623a7a8c2fd26d8058a6c5b873b4e271ca97a2e8f0897209c53fea0c741b63'
+            '226f4c2646b89f93597d218b438cb18d7d2585ea8675ee70afa8528b1a851c60'
+            'fa6f7ac7826d2489818f516bce8e2cf7c2840f71b40bad0e519717a8342dd1ba')
+noextract=("cd${pkgver/./}.iso")
+
+prepare() {
+    cd "${srcdir}/"
+
+    # adjust path of grub-mkconfig_lib
+    sed -i 's/${libdir}\/grub/${prefix}\/share\/grub/g' 42_openbsd
+
+    # adjust version
+    sed -i 's/<version_string>/${pkgver}/g' 42_openbsd
+}
+
+package() {
+    cd "${srcdir}/"
+
+    install -Dm755 42_openbsd ${pkgdir}/etc/grub.d/42_openbsd
+    install -Dm644 ${pkgname} ${pkgdir}/etc/default/${pkgname}
+
+    install -Dm644 "cd${pkgver/./}.iso" "${pkgdir}/opt/openbsd/cd${pkgver/./}.iso"
+}
