@@ -2,7 +2,6 @@
 
 # Location of ISOs:
 # ISO_LOCATION="/boot/openbsd/"
-ISO_LOCATION="/opt/openbsd/"
 
 # To set any specific bootoptions for rescue images
 # present in /boot/openbsd just set and enable the following option:

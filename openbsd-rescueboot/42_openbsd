@@ -122,7 +122,7 @@ ${grub_prep}
         loopback loop "${rel_dirname}/$openbsd"
         set root=(loop)
         configfile /boot/grub/loopback.cfg
-        kopenbsd /5.5/amd64/bsd.rd
+        kopenbsd /<version_string>/amd64/bsd.rd
 }
 EOF
 done
