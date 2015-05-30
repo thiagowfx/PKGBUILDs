@@ -39,5 +39,5 @@ package() {
 	install -Dm644 etc/default/${pkgname} ${pkgdir}/etc/default/${pkgname}
 
 	install -d ${pkgdir}/opt/grml
-  install -Dm644 ${srcdir}/grml${_isover}.iso ${pkgdir}/opt/grml/grml${_isover}.iso
+    install -Dm644 ${srcdir}/grml${_isover}.iso ${pkgdir}/opt/grml/grml${_isover}.iso
 }
