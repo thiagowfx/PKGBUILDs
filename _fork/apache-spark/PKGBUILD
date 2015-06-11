@@ -1,0 +1,53 @@
+# Maintainer: Franois Garillot ("huitseeker") <francois [at] garillot.net>
+# Contributor: Christian Krause ("wookietreiber") <kizkizzbangbang@gmail.com>
+# Contributor: Thiago Perrotta ("thiagowfx") <perrotta dot thiago at poli dot ufrj dot br>
+
+pkgname=apache-spark
+epoch=1
+pkgver=1.3.0
+pkgrel=1
+pkgdesc="fast and general engine for large-scale data processing"
+arch=('i686' 'x86_64')
+url="http://spark.apache.org/"
+license=('Apache')
+depends=('maven' 'java-environment>=6' 'scala' 'python2>=2.7')
+install=$pkgname.install
+source=("http://d3kbcqa49mib13.cloudfront.net/spark-$pkgver.tgz"
+        "$pkgname-standalone.service"
+        'spark-env.sh')
+md5sums=('694b2863621fcdbbba2777bf329c056c'
+         'bb7d8b85366e6f9cc0b2777eaea161a8'
+         '0913001583e607849270090555dbd309')
+backup=("etc/$pkgname/spark-env.sh")
+
+prepare() {
+  cd "$srcdir/spark-$pkgver"
+  sed -i "s|pid=$SPARK_PID_DIR/spark-$SPARK_IDENT_STRING-$command-$instance.pid|pid=/var/lib/$pkgname/spark-daemon.pid|" sbin/spark-daemon.sh
+}
+
+build() {
+  cd "$srcdir/spark-$pkgver"
+
+  export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
+  dev/change-version-to-2.11.sh
+  mvn -Dscala-2.11 -DskipTests -Dmaven.repo.local=/tmp clean package
+}
+
+package() {
+  cd "$srcdir/spark-$pkgver"
+
+  install -d "$pkgdir/usr/bin" "$pkgdir/usr/share"
+
+  cp -r "$srcdir/spark-$pkgver" "$pkgdir/usr/share/$pkgname/"
+
+  for f in spark-{class,sql,shell,submit}; do
+      echo -e "#!/bin/sh\ncd /usr/share/$pkgname/bin/\n./$f \"$@\"" > "$pkgdir/usr/bin/$f"
+      chmod +x "$pkgdir/usr/bin/$f"
+  done
+
+  install -Dm644 "$srcdir/$pkgname-standalone.service" "$pkgdir/usr/lib/systemd/system/$pkgname-standalone.service"
+  install -Dm644 "$srcdir/spark-env.sh" "$pkgdir/etc/$pkgname/spark-env.sh"
+
+  cd "$pkgdir/usr/share/$pkgname/conf"
+  ln -sf "/etc/$pkgname/spark-env.sh" .
+}
