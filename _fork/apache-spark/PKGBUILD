@@ -41,7 +41,7 @@ package() {
   cp -r "$srcdir/spark-$pkgver" "$pkgdir/usr/share/$pkgname/"
 
   for f in spark-{class,sql,shell,submit}; do
-      echo -e "#!/bin/sh\ncd /usr/share/$pkgname/bin/\n./$f \"$@\"" > "$pkgdir/usr/bin/$f"
+      echo -e "#!/bin/sh\ncd /usr/share/$pkgname/bin/\n./$f \"\$@\"" > "$pkgdir/usr/bin/$f"
       chmod +x "$pkgdir/usr/bin/$f"
   done
 
