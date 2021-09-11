@@ -1,0 +1,7 @@
+# urls.yaml file for urlwatch(1).
+---
+name: "dwm (upstream)"
+command: "git ls-remote --tags https://git.suckless.org/dwm"
+---
+name: "fpp (github)"
+command: "git ls-remote --tags https://github.com/facebook/PathPicker"
