@@ -7,7 +7,7 @@ This repository is managed with [`aurpublish`][1] and [`urlwatch`][2].
 ### 1. Set-up once
 
 ```
-git clone git@github.com:thiagowfx/PKGBUILDs.git
+git clone git@github.com:thiagowfx/PKGBUILDs.git &&\
 aurpublish setup  # set-up git hooks
 ```
 
