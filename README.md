@@ -1,23 +1,26 @@
 # PKGBUILDs
 
-This repository is managed with [`aurpublish`][1] and [`urlwatch`][2].
+This repository is managed with [`aurpublish`][aurpublish] and [`urlwatch`][urlwatch].
+
+[aurpublish]: https://github.com/eli-schwartz/aurpublish
+[urlwatch]: https://github.com/thp/urlwatch
 
 ## Aurpublish Workflow
 
-### 1. Set-up once
+### Set-up
 
 ```
 git clone git@github.com:thiagowfx/PKGBUILDs.git
 aurpublish setup  # set-up git hooks
 ```
 
-### 2. Pull package
+### Pull package
 
 ```
 aurpublish -p <PACKAGE>
 ```
 
-### 3. Push package
+### Push package
 
 ```
 aurpublish <PACKAGE>
@@ -25,17 +28,14 @@ aurpublish <PACKAGE>
 
 ## Urlwatch workflow
 
-### 1. Add package
+### Add package
 
 ```
-$EDITOR urls.yaml
+$EDITOR urlwatch.yaml
 ```
 
-### 2. Check for updates
+### Check for updates
 
 ```
 make urlwatch
 ```
-
-[1]: https://github.com/eli-schwartz/aurpublish
-[2]: https://github.com/thp/urlwatch

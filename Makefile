@@ -4,6 +4,6 @@ ifeq (, $(shell which urlwatch))
 endif
 
 urlwatch:
-	urlwatch --urls urls.yaml
+	urlwatch --urls urlwatch.yml
 
 .PHONY: urlwatch

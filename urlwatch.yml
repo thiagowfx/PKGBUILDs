@@ -1,4 +1,4 @@
-# urls.yaml file for urlwatch(1).
+# urls for urlwatch(1)
 ---
 name: "fpp"
 command: "git ls-remote --tags https://github.com/facebook/PathPicker"
