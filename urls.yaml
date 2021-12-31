@@ -2,3 +2,6 @@
 ---
 name: "fpp"
 command: "git ls-remote --tags https://github.com/facebook/PathPicker"
+---
+name: "i3a"
+command: "git ls-remote --tags https://git.goral.net.pl/mgoral/i3a"
