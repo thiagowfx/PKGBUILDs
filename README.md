@@ -11,7 +11,7 @@ This repository is managed with [`aurpublish`][aurpublish] and [`urlwatch`][urlw
 
 ```
 git clone git@github.com:thiagowfx/PKGBUILDs.git
-aurpublish setup  # set-up git hooks
+make setup  # set-up git hooks
 ```
 
 ### Pull package
