@@ -14,7 +14,7 @@ git clone git@github.com:thiagowfx/PKGBUILDs.git
 make setup  # set-up git hooks
 ```
 
-### Pull package
+### Pull existing package
 
 ```
 aurpublish -p <PACKAGE>
