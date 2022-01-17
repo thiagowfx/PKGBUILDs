@@ -10,6 +10,6 @@ setup:
 	aurpublish setup
 
 	# https://github.com/eli-schwartz/aurpublish/issues/21
-	git config --add core.hooksPath .git/hooks
+	git config core.hooksPath .git/hooks
 
 .PHONY: setup urlwatch
