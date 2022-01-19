@@ -1,5 +1,8 @@
 # urls for urlwatch(1)
 ---
+name: "bkt"
+command: "git ls-remote --tags https://github.com/dimo414/bkt"
+---
 name: "fpp"
 command: "git ls-remote --tags https://github.com/facebook/PathPicker"
 ---
