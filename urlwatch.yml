@@ -3,11 +3,11 @@
 name: "fpp"
 command: "git ls-remote --tags https://github.com/facebook/PathPicker"
 ---
-name: "i3a"
-command: "git ls-remote --tags https://git.goral.net.pl/mgoral/i3a"
----
 name: "git-crecord"
 command: "git ls-remote --tags https://github.com/andrewshadura/git-crecord"
+---
+name: "i3a"
+command: "git ls-remote --tags https://git.goral.net.pl/mgoral/i3a"
 # ---
 # name: "ttf-camingocode"
 # N/A
